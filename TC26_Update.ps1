@@ -1,6 +1,6 @@
 enum Error {
     ADBNotFound
-    PDANotFound
+    DeviceNotFound
     APKNotFound
     DWNotFound
     ConfigNotFound
@@ -28,7 +28,7 @@ function Assert-DeviceConnection ($adb_path) {
     $connected_device = $device_list -Match '(\d{14})'
     if (-Not($connected_device)) {
         Set-Location $PSScriptRoot
-        return [Error]::PDANotFound
+        return [Error]::DeviceNotFound
     }
     Set-Location $PSScriptRoot
 }
@@ -132,7 +132,7 @@ $update_datawedge = Get-UserSetting('$! [Y/N] Update DataWedge')
 ''
 While ($running) {
     $device_status = Assert-DeviceConnection($adb)
-    if ($device_status -eq [Error]::PDANotFound) {
+    if ($device_status -eq [Error]::DeviceNotFound) {
         "$! ERROR: Unable To Find Connected Device!"
         return
     }
