@@ -4,8 +4,7 @@
 ## Requirements
 ### 1. Minimal ADB and Fastboot
 Minimal ADB and Fastboot needs to be installed to overwrite and install the new files, and to get the HWID of the device.
-Minimal ADB and Fastboot can be downloaded [from Android Data Host.](https://androiddatahost.com/uq6us)
-
+Minimal ADB and Fastboot can be downloaded [from Android Data Host.](https://androiddatahost.com/uq6us)\
 Alternatively, ADB and Fastboot can be used in portable mode if using the installer on the system used to update the devices is not an option. Simply copy the */Minimal ADB and Fastboot/* folder from a system with the application installed to the root path of the script.
 ### 2. Device In USB Debugging Mode
 The device can be set to USB Debugging mode by pressing the *"Build Number"* field under *Settings>About phone* then turning on *"USB Debugging"* under *Settings>System>Developer* Options.
