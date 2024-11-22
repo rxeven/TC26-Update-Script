@@ -1,0 +1,5 @@
+/.gitattributes
+/Minimal ADB and Fastboot
+*.json
+*.db
+*.apk

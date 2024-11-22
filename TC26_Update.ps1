@@ -9,13 +9,17 @@ enum Error {
 function Get-ADBPath {
     $adb_x86 = ${env:ProgramFiles(x86)} + '\Minimal ADB and Fastboot\'
     $adb_x64 = ${env:ProgramFiles} + '\Minimal ADB and Fastboot\'
+    $adb_portable = $PSScriptRoot + '\Minimal ADB and Fastboot\'
 
     $assert_x86 = Test-Path -Path $adb_x86
     $assert_x64 = Test-Path -Path $adb_x64
-    if($assert_x86) {
+    $assert_portable = Test-Path -Path $adb_portable
+    if ($assert_x86) {
         return $adb_x86
     } elseif ($assert_x64) {
         return $adb_x64
+    } elseif ($assert_portable) {
+        return $adb_portable
     } else {
         return [Error]::ADBNotFound
     }
