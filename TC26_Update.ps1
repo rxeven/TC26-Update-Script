@@ -7,17 +7,22 @@ enum Error {
 }
 
 function Get-ADBPath {
+    Set-Location $PSScriptRoot
     $adb_x86 = ${env:ProgramFiles(x86)} + '\Minimal ADB and Fastboot\'
     $adb_x64 = ${env:ProgramFiles} + '\Minimal ADB and Fastboot\'
     $adb_portable = $PSScriptRoot + '\Minimal ADB and Fastboot\'
 
     $assert_x86 = Test-Path -Path $adb_x86
     $assert_x64 = Test-Path -Path $adb_x64
+    $assert_tiny = Test-Path -Path Tiny_ADB*
     $assert_portable = Test-Path -Path $adb_portable
     if ($assert_x86) {
         return $adb_x86
     } elseif ($assert_x64) {
         return $adb_x64
+    } elseif ($assert_tiny) {
+        $adb_tiny = Get-ChildItem Tiny_ADB*
+        return $adb_tiny.Name
     } elseif ($assert_portable) {
         return $adb_portable
     } else {
@@ -126,6 +131,7 @@ $adb = Get-ADBPath
 
 if ($adb -eq [Error]::ADBNotFound) {
     "$! ERROR: Unable To Find ADB Installation!"
+    "$! Tiny ADB Can Be Downloaded From: https://androiddatahost.com/6hs2m"
     return
 }
 
